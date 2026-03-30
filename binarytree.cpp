@@ -13,11 +13,26 @@ struct Node {
 
 class BST {
 private:
-  Node* root;
+	Node* insert(Node* node, int val) {
+		if (!node) return new Node(val);
+		if (val < node->data) node->left = insert(node->left, val);
+		else if (val > node->data) node->right = insert(node->right, val);
+		return node;
+	}
+
+	bool search(Node* node, int val) {
+		if (!node) return false;
+		if (node->data == val) return true;
+		return (val < node->data) node->right = insert(node->right, val);
+	}
 
 public:
-  BST() : root(nullptr) {}
-  // placeholder
+	void add(int val) { 
+		root = insert(root, val); 
+	}
+	bool contains(int val) {
+		return search(root, val);
+	}
 };
 
 int main() {
