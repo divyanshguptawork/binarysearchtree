@@ -25,6 +25,16 @@ private:
 		if (node->data == val) return true;
 		return (val < node->data) node->right = insert(node->right, val);
 	}
+  void printTree(Node* root, int space) {
+    if (!root) return;
+    space += 10;
+    printTree(root->right, space);
+    cout << endl;
+    for (int i = 10; i < space; i++)
+      cout << " ";
+    cout << root->data << "\n";
+    printTree(root->left, space);
+  }
 
 public:
 	void add(int val) { 
@@ -33,6 +43,9 @@ public:
 	bool contains(int val) {
 		return search(root, val);
 	}
+  void display() {
+    printTree(root, 0);
+  }
 };
 
 int main() {
